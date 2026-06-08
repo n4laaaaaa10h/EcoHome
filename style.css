@@ -1,0 +1,215 @@
+/* --- A. Variabel Tema untuk Implementasi HCI (Ganti Tema Otomatis) --- */
+:root {
+  --bg-color: #f4f6f9;
+  --card-bg: #ffffff;
+  --accent-color: #007bff; /* Tema Biru Standard */
+  --text-color: #333333;
+  --sidebar-bg: #1e293b;
+  --progress-color: #28a745;
+}
+
+/* Tema Berubah Dinamis Saat Eco-Mode Aktif */
+:root.eco-mode-active {
+  --bg-color: #e8f5e9;    /* Hijau Lembut */
+  --card-bg: #ffffff;
+  --accent-color: #2e7d32; /* Hijau Daun */
+  --text-color: #1b5e20;
+  --sidebar-bg: #0f2d11;
+}
+
+/* --- B. Reset & Base Style --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.4s ease; /* Transisi halus perubahan tema */
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* --- C. Sidebar Layout --- */
+.sidebar {
+  width: 240px;
+  background-color: var(--sidebar-bg);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: background-color 0.4s ease;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.menu a {
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.menu a.active, .menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.profile {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- D. Main Content Layout --- */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.energy-display {
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--accent-color);
+  margin: 10px 0;
+}
+
+/* --- E. Budgeting Component --- */
+.budget-input-group {
+  margin: 15px 0 10px 0;
+}
+
+.budget-input-group input {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 80px;
+  font-size: 16px;
+}
+
+.progress-bar-container {
+  background-color: #e2e8f0;
+  border-radius: 10px;
+  height: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  background-color: var(--progress-color);
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease, background-color 0.3s ease;
+}
+
+/* --- F. Eco-Mode & Devices Grid --- */
+.eco-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-eco {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.1s, background-color 0.4s;
+}
+
+.btn-eco:active {
+  transform: scale(0.98);
+}
+
+.devices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.device-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.device-card.off {
+  opacity: 0.6;
+}
+
+.switch-btn {
+  background-color: #cbd5e1;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  align-self: flex-end;
+  transition: 0.2s;
+}
+
+.switch-btn.active {
+  background-color: #28a745;
+  color: white;
+}
+
+/* --- G. Pop-up Toast Alert (HCI Feedback) --- */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.toast.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
