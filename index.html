@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoHome Dashboard</title>
+  <title>EcoHome Dashboard Pro</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,84 +16,166 @@
     <aside class="sidebar">
       <div class="logo">🌿 EcoHome</div>
       <nav class="menu">
-        <a href="#" class="active">Dashboard</a>
-        <a href="#">Analytics</a>
-        <a href="#">Settings</a>
+        <a href="#" class="nav-link active" data-target="page-dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-target="page-analytics">Analytics</a>
+        <a href="#" class="nav-link" data-target="page-settings">Settings</a>
       </nav>
-      <div class="profile">👤 Penghuni Rumah</div>
+      <div class="profile-section" id="user-profile-trigger">
+        <div class="avatar">👤</div>
+        <div class="profile-info">
+          <h4 id="current-user-name">Ayah (Admin)</h4>
+          <small>Tap untuk ganti user</small>
+        </div>
+      </div>
     </aside>
 
     <main class="main-content">
       
-      <section class="top-row">
-        <div class="card summary-card">
-          <h3>Konsumsi Energi Hari Ini</h3>
-          <div class="energy-display">
-            <span id="total-energy">2.5</span> <small>kWh</small>
-          </div>
-          <p>Estimasi biaya: Rp <span id="total-cost">3750</span></p>
-        </div>
-
-        <div class="card budget-card">
-          <h3>Pengaturan Batas Anggaran</h3>
-          <div class="budget-input-group">
-            <label for="budget-input">Batas (kWh): </label>
-            <input type="number" id="budget-input" value="5.0" min="1" step="0.5">
-          </div>
-          <div class="progress-bar-container">
-            <div id="budget-progress" class="progress-bar" style="width: 50%"></div>
-          </div>
-          <p id="budget-status">Status: Aman</p>
-        </div>
-      </section>
-
-      <section class="controls-section">
-        <div class="eco-banner">
-          <h2>Fitur Utama</h2>
-          <button id="eco-toggle" class="btn-eco">🌿 Aktifkan Eco-Mode</button>
-        </div>
-
-        <h3>Kontrol Perangkat</h3>
-        <div class="devices-grid">
-          <div class="card device-card" data-energy="1.2" data-essential="true">
-            <div class="device-info">
-              <span class="icon">🔌</span>
-              <h4>Kulkas Dapur</h4>
-              <p class="status-text">Status: ON</p>
+      <div id="page-dashboard" class="tab-content active">
+        <section class="top-row">
+          <div class="card summary-card">
+            <h3>Konsumsi Energi Hari Ini</h3>
+            <div class="energy-display">
+              <span id="total-energy">2.5</span> <small>kWh</small>
             </div>
-            <button class="switch-btn active" role="switch" aria-checked="true">ON</button>
+            <p>Estimasi biaya: Rp <span id="total-cost">3750</span></p>
           </div>
 
-          <div class="card device-card" data-energy="1.5" data-essential="false">
-            <div class="device-info">
-              <span class="icon">❄️</span>
-              <h4>AC Kamar Utama</h4>
-              <p class="status-text">Status: ON</p>
+          <div class="card budget-card">
+            <h3>Pengaturan Batas Anggaran</h3>
+            <div class="budget-input-group">
+              <label for="budget-input">Batas (kWh): </label>
+              <input type="number" id="budget-input" value="5.0" min="1" step="0.5">
             </div>
-            <button class="switch-btn active" role="switch" aria-checked="true">ON</button>
+            <div class="progress-bar-container">
+              <div id="budget-progress" class="progress-bar" style="width: 50%"></div>
+            </div>
+            <p id="budget-status">Status: Aman</p>
+          </div>
+        </section>
+
+        <section class="controls-section">
+          <div class="eco-banner">
+            <h2>Fitur Utama</h2>
+            <button id="eco-toggle" class="btn-eco">🌿 Aktifkan Eco-Mode</button>
+          </div>
+          <h3>Kontrol Perangkat</h3>
+          <div class="devices-grid">
+            <div class="card device-card" data-energy="1.2" data-essential="true">
+              <div class="device-info">
+                <span>🔌</span>
+                <h4>Kulkas Dapur</h4>
+                <p class="status-text">Status: ON</p>
+              </div>
+              <button class="switch-btn active">ON</button>
+            </div>
+            <div class="card device-card" data-energy="1.5" data-essential="false">
+              <div class="device-info">
+                <span>❄️</span>
+                <h4>AC Kamar Utama</h4>
+                <p class="status-text">Status: ON</p>
+              </div>
+              <button class="switch-btn active">ON</button>
+            </div>
+            <div class="card device-card" data-energy="0.8" data-essential="false">
+              <div class="device-info">
+                <span>💡</span>
+                <h4>Lampu Ruang Tamu</h4>
+                <p class="status-text">Status: ON</p>
+              </div>
+              <button class="switch-btn active">ON</button>
+            </div>
+            <div class="card device-card" data-energy="0.5" data-essential="false">
+              <div class="device-info">
+                <span>📺</span>
+                <h4>Smart TV</h4>
+                <p class="status-text">Status: OFF</p>
+              </div>
+              <button class="switch-btn">OFF</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="page-analytics" class="tab-content">
+        <h2>Analisis & Riwayat Energi</h2>
+        <p class="subtitle">Data perbandingan konsumsi energi terperinci.</p>
+        
+        <div class="analytics-layout">
+          <div class="card chart-card">
+            <h3>Konsumsi Mingguan (Simulasi)</h3>
+            <div class="bar-chart">
+              <div class="bar-wrapper"><div class="bar" style="height: 60%"><span>6kWh</span></div><small>Sen</small></div>
+              <div class="bar-wrapper"><div class="bar" style="height: 85%"><span>8.5kWh</span></div><small>Sel</small></div>
+              <div class="bar-wrapper"><div class="bar" style="height: 40%"><span>4kWh</span></div><small>Rab</small></div>
+              <div class="bar-wrapper"><div class="bar" style="height: 95%"><span>9.5kWh</span></div><small>Kam</small></div>
+              <div class="bar-wrapper"><div class="bar" style="height: 70%"><span>7kWh</span></div><small>Jum</small></div>
+              <div class="bar-wrapper"><div class="bar eco-bar" style="height: 30%"><span>3kWh</span></div><small>Sab</small></div>
+              <div class="bar-wrapper"><div class="bar eco-bar" style="height: 25%"><span>2.5kWh</span></div><small>Aha</small></div>
+            </div>
+            <small class="hint">*Warna hijau menunjukkan efisiensi tinggi berkat Eco-Mode.</small>
           </div>
 
-          <div class="card device-card" data-energy="0.8" data-essential="false">
-            <div class="device-info">
-              <span class="icon">💡</span>
-              <h4>Lampu Ruang Tamu</h4>
-              <p class="status-text">Status: ON</p>
-            </div>
-            <button class="switch-btn active" role="switch" aria-checked="true">ON</button>
-          </div>
-
-          <div class="card device-card" data-energy="0.5" data-essential="false">
-            <div class="device-info">
-              <span class="icon">📺</span>
-              <h4>Smart TV</h4>
-              <p class="status-text">Status: OFF</p>
-            </div>
-            <button class="switch-btn" role="switch" aria-checked="false">OFF</button>
+          <div class="card rank-card">
+            <h3>Beban Energi Tertinggi</h3>
+            <ul class="rank-list">
+              <li><span>1. AC Kamar Utama</span> <strong>45% dari total</strong></li>
+              <li><span>2. Kulkas Dapur</span> <strong>30% dari total</strong></li>
+              <li><span>3. Lampu & Elektronik</span> <strong>25% dari total</strong></li>
+            </ul>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div id="page-settings" class="tab-content">
+        <h2>Pengaturan Sistem</h2>
+        <p class="subtitle">Konfigurasi preferensi dashboard pintar Anda.</p>
+
+        <div class="settings-list">
+          <div class="card settings-item">
+            <div class="settings-desc">
+              <h4>Metode Notifikasi Bahaya</h4>
+              <p>Kirim alert suara otomatis jika konsumsi melewati batas.</p>
+            </div>
+            <input type="checkbox" id="set-sound-alert" checked>
+          </div>
+
+          <div class="card settings-item">
+            <div class="settings-desc">
+              <h4>Interval Pembaruan Data (*Real-time*)</h4>
+              <p>Mengatur seberapa sering JavaScript memindai ulang daya alat.</p>
+            </div>
+            <select id="set-interval">
+              <option value="1">Setiap 1 Detik</option>
+              <option value="5" selected>Setiap 5 Detik</option>
+              <option value="30">Setiap 30 Detik</option>
+            </select>
+          </div>
+
+          <div class="card settings-item">
+            <div class="settings-desc">
+              <h4>Reset Data Akumulasi</h4>
+              <p>Mengosongkan kembali seluruh hitungan pemakaian dari nol.</p>
+            </div>
+            <button id="btn-reset-data" class="btn-danger">Reset Sekarang</button>
+          </div>
+        </div>
+      </div>
 
     </main>
+  </div>
+
+  <div id="user-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Pilih Profil Penghuni</h3>
+      <p>Mengubah profil akan menyesuaikan batasan akses kontrol.</p>
+      <div class="user-options">
+        <button class="user-opt-btn" data-user="Ayah (Admin)">👨‍💼 Ayah (Admin)</button>
+        <button class="user-opt-btn" data-user="Ibu (User)">👩‍🍳 Ibu (User)</button>
+        <button class="user-opt-btn" data-user="Anak (Anak-anak)">👦 Anak (Anak-anak)</button>
+      </div>
+      <button id="close-modal-btn" class="btn-secondary">Batal</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
